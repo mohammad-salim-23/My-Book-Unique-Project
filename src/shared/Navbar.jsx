@@ -1,7 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../provider/AuthProvider';
+import logo from "../../public/BookIcon.jpg"
 const Navbar = () => {
+  const {user,logOut} = useContext(AuthContext);
+  
+  const handleLogOut=()=>{
+    logOut()
+    .then(()=>{})
+    .catch((error)=>console.log(error));
+  }
     const navLink =(
         <>
         <li>
@@ -35,18 +44,30 @@ const Navbar = () => {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-      
+      {navLink}
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <img className='lg:w-32 lg:h-24 w-0' src={logo} alt="" />
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-     
+     {navLink}
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+  {user ? (
+        <>
+          
+          <button className="mb-1" onClick={handleLogOut}>
+            LogOut
+          </button>
+         
+        </>
+      ) : (
+        
+          <Link to="/login"><button className='btn'>Login</button></Link>
+      
+      )}
   </div>
 </div>
         </div>
