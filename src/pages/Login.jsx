@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 // import { Helmet } from 'react-helmet';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../provider/AuthProvider';
+import SocialComponent from '../components/SocialComponent';
 // import SocialComponent from '../../Components/SocialComponent/SocialComponent';
 
 const Login = () => {
@@ -110,7 +111,7 @@ const Login = () => {
       
       <p className='flex items-center justify-center mb-2'><small>New here? </small> <Link  to="/signup">Create a new account</Link></p>
     
-      {/* <SocialComponent></SocialComponent> */}
+      <SocialComponent></SocialComponent>
     </div>
   </div>
 </div>
