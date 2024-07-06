@@ -25,8 +25,9 @@ const SocialComponent = () => {
     return (
         <div className="px-32">
             <div>
-                <button onClick={handleGoogleSignIn} className="btn btn-active">
+                <button  onClick={handleGoogleSignIn} className="btn btn-active btn-block">
                       <FaGoogle></FaGoogle>
+                      Google
                 </button>
             </div>
         </div>
