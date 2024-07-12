@@ -22,15 +22,15 @@ const Navbar = () => {
   }
     const navLink =(
         <>
-        <li>
+        <li className='text-[17px]'>
             <Link to="/">Home</Link>
         </li>
-        <li>
+        <li className='text-[17px]'>
             <Link to="/allBooks">All Books</Link>
         </li>
         {
           user && !isAdmin && (
-          <li>
+          <li className='text-[17px]'>
           <Link to="/dashboard">Dashboard</Link>
         </li>
             
@@ -38,7 +38,7 @@ const Navbar = () => {
         }
         {
           user && isAdmin &&
-          (<li>
+          (<li className='text-[17px]'>
            <Link to="/dashboard/adminHome">Dashboard</Link>
           </li>)
         }
@@ -65,7 +65,7 @@ const Navbar = () => {
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow ">
       {navLink}
       </ul>
     </div>

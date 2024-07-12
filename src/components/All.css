@@ -1,0 +1,68 @@
+.img-style{
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+}
+.navbarr {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* background-color: #ffffff; 
+    background-color: rgb(219, 168, 150);  */
+    /* background-color: #BA68C8;  */
+    z-index: 1000; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+  }
+  
+  .not-found-image {
+    width: 300px; 
+  }
+  
+  .not-found-heading {
+    margin-top:20px;
+    font-size: 34px;
+  }
+  
+  .not-found-text {
+    margin-top:10px;
+    font-size: 17px;
+  }
+  
+  .not-found-link {
+    margin-top:20px;
+    font-size:17px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .not-found-link:hover {
+    color: #0056b3;
+  }
+  .class-card {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.class-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.class-card h3 {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
