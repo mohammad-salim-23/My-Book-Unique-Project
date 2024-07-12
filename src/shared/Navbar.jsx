@@ -1,11 +1,20 @@
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import logo from "../../public/BookIcon.jpg"
+import useAdmin from '../hooks/useAdmin';
 const Navbar = () => {
   const {user,logOut} = useContext(AuthContext);
-  
+  const [showDropdown,setShowDropdown] = useState(false);
+  const [isAdmin] = useAdmin();
+
+  const toggleDropdown=()=>{
+    setShowDropdown(!showDropdown);
+  };
+  const closeDropdown=()=>{
+    setShowDropdown(false);
+  }
   const handleLogOut=()=>{
     logOut()
     .then(()=>{})
@@ -19,7 +28,20 @@ const Navbar = () => {
         <li>
             <Link to="/allBooks">All Books</Link>
         </li>
-        
+        {
+          user && !isAdmin && (
+          <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+            
+          )
+        }
+        {
+          user && isAdmin &&
+          (<li>
+           <Link to="/dashboard/adminHome">Dashboard</Link>
+          </li>)
+        }
         </>
     )
     return (
@@ -55,20 +77,40 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-  {user ? (
-        <>
-          
-          <button className="mb-1" onClick={handleLogOut}>
-            LogOut
-          </button>
-         
-        </>
-      ) : (
-        
-          <Link to="/login"><button className='btn'>Login</button></Link>
-      
-      )}
-  </div>
+        {!user ? (
+          <Link to="/login">
+            <button className="btn bg-primaryColor">SignIn</button>
+          </Link>
+        ) : (
+          <div className="relative">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <img onClick={toggleDropdown} src={user?.photoURL} alt="" />
+            </label>
+            {showDropdown && (
+              <div className="absolute top-full right-0 mt-1 w-52 shadow rounded-md font-bold bg-black text-white z-10">
+                <ul className="p-2">
+                  {user && <li>{user.displayName}</li>}
+                  {isAdmin && (
+                    <li onClick={closeDropdown}>
+                      <Link to="/dashboard/adminHome">Dashboard</Link>
+                    </li>
+                  )}
+                 
+                  {user && !isAdmin &&  (
+                    <li onClick={closeDropdown}>
+                      <Link to="/dashboard">Dashboard</Link>
+                    </li>
+                  )}
+                  <li onClick={closeDropdown}>
+                    <button onClick={handleLogOut}>LogOut</button>
+                  </li>
+                 
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
 </div>
         </div>
     );
