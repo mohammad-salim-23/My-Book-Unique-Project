@@ -11,6 +11,7 @@ import AddBooks from "../Users/AddBooks";
 import MyProfile from "../shared/MyProfile";
 import AllUsers from "../Admin/AllUsers";
 import AllBookReq from "../Admin/AllBookReq";
+import PrivateRoute from "./PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -35,7 +36,7 @@ export const router = createBrowserRouter([
    },
   {
     path:"/dashboard",
-    element:<Dashboard></Dashboard>,
+    element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     errorElement:<ErrorPage></ErrorPage>,
     children:[
         {
