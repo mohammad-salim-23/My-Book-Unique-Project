@@ -3,7 +3,11 @@ import useAdmin from "../hooks/useAdmin";
 import { AuthContext } from "../provider/AuthProvider";
 import { NavLink, Outlet } from "react-router-dom";
 
+import { MdOutlineBookmarkBorder } from "react-icons/md";
+import { BiBookAdd } from "react-icons/bi";
+import { MdBookmarkAdded } from "react-icons/md";
 import { FaBroom, FaChalkboardTeacher, FaHome, FaSchool, FaStar, FaUser, FaUserAlt } from "react-icons/fa";
+import { IoBookOutline } from "react-icons/io5";
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
     const {user} = useContext(AuthContext);
@@ -35,14 +39,14 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/allClass">
+            <NavLink to="/dashboard/allBookReq">
             <FaBroom></FaBroom>
              All Classes
             </NavLink>
           </li>
           <li>
             <NavLink to="/dashboard/myProfile">
-            <FaPersonRifle></FaPersonRifle>
+           
              My Profile
             </NavLink>
           </li>
@@ -53,9 +57,21 @@ const Dashboard = () => {
          {
           user  && !isAdmin && <>
            <li>
-            <NavLink to="/dashboard/myEnrollment">
-            <IoBookOutline />
-             My EnRoll Class
+            <NavLink to="/dashboard/added">
+            <MdBookmarkAdded />
+             My Added Books
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/order">
+            <MdOutlineBookmarkBorder />
+             My Ordered Books
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/add">
+            <BiBookAdd />
+             Add Books
             </NavLink>
           </li>
           <li>
