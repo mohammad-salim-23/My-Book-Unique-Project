@@ -49,8 +49,12 @@ const AuthProvider = ({children}) => {
                 localStorage.removeItem('access-token');
                 setLoading(false);
             }
-        })
-    },[axiosPublic])
+        });
+        return ()=>{
+            unSubscribe();
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[auth,axiosPublic])
     const authInfo = {
         user,loading,createUser,
         signIn,googleSignIn,
