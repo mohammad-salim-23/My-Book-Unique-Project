@@ -1,27 +1,46 @@
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { Helmet } from "react-helmet";
-
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const AddBooks = () => {
-    const currentDate = new Date().toISOString().slice(0,10);
-    const { user } = useContext(AuthContext);
-    
-    const handleSubmit = (e) => {
+    const currentDate = new Date().toISOString().slice(0, 10);
+    const { user } = useContext(AuthContext); // Ensure user object is available
+    const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const bookData = {
             bookName: formData.get('bookName'),
             writerName: formData.get('writerName'),
-            addedBy: user?.name,
+            addedBy: user?.name, // Automatically populated from AuthContext
             bookPhoto: formData.get('bookPhoto'),
             category: formData.get('category'),
             quantity: formData.get('quantity'),
             dateAdded: currentDate,
-            purchaseQuantity:0,
+            purchaseQuantity: 0,
         };
-        console.log(bookData);
-        // Handle the form submission, e.g., send the data to the server
+
+        try {
+            const response = await axiosSecure.post("/addBook", bookData);
+            if (response.data?.insertedId) {
+                e.target.reset();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `Book "${bookData.bookName}" has been added successfully`,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                navigate("/dashboard/added");
+            }
+        } catch (error) {
+            console.error("Error adding book:", error);
+        }
     };
 
     return (
@@ -54,7 +73,7 @@ const AddBooks = () => {
                     <input
                         type="text"
                         name="addedBy"
-                        value={user?.name}
+                        value={user?.displayName} // Automatically populated and read-only
                         readOnly
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 focus:outline-none focus:ring-primary focus:border-primary"
                     />

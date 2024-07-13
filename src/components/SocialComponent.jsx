@@ -25,9 +25,11 @@ const SocialComponent = () => {
     return (
         <div className="px-32">
             <div>
-                <button  onClick={handleGoogleSignIn} className="btn btn-active btn-block bg-[#987306]">
-                      <FaGoogle></FaGoogle>
-                      Google
+                <button  onClick={handleGoogleSignIn} className="btn btn-active  bg-[#987306]">
+                      <div className="flex gap-2">
+                      <FaGoogle></FaGoogle>  Google
+                      </div>
+                     
                 </button>
             </div>
         </div>

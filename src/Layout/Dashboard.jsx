@@ -2,12 +2,13 @@ import { useContext } from "react";
 import useAdmin from "../hooks/useAdmin";
 import { AuthContext } from "../provider/AuthProvider";
 import { NavLink, Outlet } from "react-router-dom";
-
+import { CgProfile } from "react-icons/cg";
 import { MdOutlineBookmarkBorder } from "react-icons/md";
 import { BiBookAdd } from "react-icons/bi";
 import { MdBookmarkAdded } from "react-icons/md";
 import { FaBroom, FaChalkboardTeacher, FaHome, FaSchool, FaStar, FaUser, FaUserAlt } from "react-icons/fa";
 import { IoBookOutline } from "react-icons/io5";
+import { BiBookReader } from "react-icons/bi";
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
     const {user} = useContext(AuthContext);
@@ -29,18 +30,18 @@ const Dashboard = () => {
           <li>
             <NavLink to="/dashboard/users">
              <FaUser></FaUser>
-             Users
+            All Users
             </NavLink>
           </li>
           <li>
             <NavLink to="/dashboard/allBookReq">
-            <FaBroom></FaBroom>
-             All Classes
+            <BiBookReader />
+             Requested Books
             </NavLink>
           </li>
           <li>
             <NavLink to="/dashboard/myProfile">
-           
+            <CgProfile />
              My Profile
             </NavLink>
           </li>
