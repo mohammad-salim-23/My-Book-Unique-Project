@@ -25,8 +25,12 @@ const Navbar = () => {
         <li className='text-[17px]'>
             <Link to="/">Home</Link>
         </li>
+       
         <li className='text-[17px]'>
             <Link to="/allBooks">All Books</Link>
+        </li>
+        <li className='text-[17px]'>
+            <Link to="dashboard/add">Add Book</Link>
         </li>
         {
           user && !isAdmin && (
@@ -39,14 +43,14 @@ const Navbar = () => {
         {
           user && isAdmin &&
           (<li className='text-[17px]'>
-           <Link to="/dashboard/adminHome">Dashboard</Link>
+           <Link to="/dashboard">Dashboard</Link>
           </li>)
         }
         </>
     )
     return (
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-base-100 bg-primary-dark">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -69,7 +73,7 @@ const Navbar = () => {
       {navLink}
       </ul>
     </div>
-    <img className='w-20 h-22 lg:w-28 lg:h-24 ' src={logo} alt="" />
+    <img className='w-20 h-22 lg:w-20 lg:h-22 ' src={logo} alt="" />
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -92,7 +96,7 @@ const Navbar = () => {
                   {user && <li>{user.displayName}</li>}
                   {isAdmin && (
                     <li onClick={closeDropdown}>
-                      <Link to="/dashboard/adminHome">Dashboard</Link>
+                      <Link to="/dashboard">Dashboard</Link>
                     </li>
                   )}
                  

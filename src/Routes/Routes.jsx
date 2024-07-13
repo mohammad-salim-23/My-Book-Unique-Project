@@ -12,6 +12,7 @@ import MyProfile from "../shared/MyProfile";
 import AllUsers from "../Admin/AllUsers";
 import AllBookReq from "../Admin/AllBookReq";
 import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 
 export const router = createBrowserRouter([
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
         {
             path:"/signUp",
             element:<SignUp></SignUp>
+        },
+        {
+            path:"/add",
+            element:<PrivateRoute><AddBooks></AddBooks></PrivateRoute>
         }
     ]
    },
@@ -59,12 +64,12 @@ export const router = createBrowserRouter([
         // admin routes
         {
             path:"users",
-            element:<AllUsers></AllUsers>
+            element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
 
         },
         {
             path:"allBookReq",
-            element:<AllBookReq></AllBookReq>
+            element:<AdminRoute><AllBookReq></AllBookReq></AdminRoute>
         }
     ]
   }

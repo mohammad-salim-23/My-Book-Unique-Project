@@ -5,10 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: {
+          light: '#FFD700',  // Light Orange (Gold)
+          DEFAULT: '#FFA500', // Standard Orange
+          dark: '#9370DB',   // Dark Orange
+        },
+      },
+    },
   },
   plugins: [
     require('daisyui'),
   ],
 }
-

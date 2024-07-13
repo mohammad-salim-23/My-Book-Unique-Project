@@ -14,23 +14,17 @@ const Dashboard = () => {
     return (
         <div>
               <div className="flex gap-8">
-            <div className="w-64 min-h-screen bg-green-300">
+            <div className="w-64 min-h-screen bg-primary-light">
         <ul className="menu">
          {
           isAdmin ?
           <>
+             
              <li>
-             <NavLink to="/dashboard/adminHome">
-              <FaHome></FaHome>
-              Admin Home
+            <NavLink to="/dashboard/add">
+            <BiBookAdd />
+             Add Books
             </NavLink>
-            </li>
-            <li>
-            <NavLink to="/dashboard/reqTeacher">
-              <FaChalkboardTeacher></FaChalkboardTeacher>
-              Teacher Request
-            </NavLink>
-
           </li>
           <li>
             <NavLink to="/dashboard/users">
