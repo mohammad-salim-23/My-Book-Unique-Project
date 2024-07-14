@@ -17,12 +17,15 @@ const AddBooks = () => {
         const bookData = {
             bookName: formData.get('bookName'),
             writerName: formData.get('writerName'),
-            addedBy: user?.name, // Automatically populated from AuthContext
-            bookPhoto: formData.get('bookPhoto'),
+            addedBy: user?.displayName,
+            email: user?.email, // Automatically populated from AuthContext
             category: formData.get('category'),
             quantity: formData.get('quantity'),
             dateAdded: currentDate,
             purchaseQuantity: 0,
+            image: formData.get('image'),
+            price: formData.get('price'),
+            description: formData.get('description'), // Added description
         };
 
         try {
@@ -79,15 +82,6 @@ const AddBooks = () => {
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700">Book Photo URL</label>
-                    <input
-                        type="url"
-                        name="bookPhoto"
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                        required
-                    />
-                </div>
-                <div>
                     <label className="block text-sm font-medium text-gray-700">Category</label>
                     <input
                         type="text"
@@ -104,6 +98,33 @@ const AddBooks = () => {
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                         required
                     />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">Image URL</label>
+                    <input
+                        type="url"
+                        name="image"
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        required
+                    />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">Price</label>
+                    <input
+                        type="number"
+                        name="price"
+                        step="0.01"
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        required
+                    />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea
+                        name="description"
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        required
+                    ></textarea>
                 </div>
                 <div>
                     <button
