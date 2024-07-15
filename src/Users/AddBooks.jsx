@@ -25,6 +25,7 @@ const AddBooks = () => {
             purchaseQuantity: 0,
             image: formData.get('image'),
             price: formData.get('price'),
+            status: "pending",
             description: formData.get('description'), // Added description
         };
 
