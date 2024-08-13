@@ -1,20 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useState } from "react";
-import Swal from "sweetalert2";
 
+import Swal from "sweetalert2";
+import { FaTrashAlt, FaUsers } from "react-icons/fa";
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure();
     const {data:users=[],refetch} = useQuery({
         queryKey:["users"],
         queryFn:async()=>{
-            queryFn:async()=>{
                 const result = await axiosSecure.get("/users");
                 return result.data;
-            }
         }
     });
+   
     // state for pagination
     const [currentPage,setCurrentPage] = useState(1);
     const itemsPerPage = 10;
